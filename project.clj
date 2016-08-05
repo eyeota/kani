@@ -1,4 +1,4 @@
-(defproject kani "0.0.1"
+(defproject kani "0.0.2-SNAPSHOT"
   :description "Cassandra CSV export/import. Much better than COPY FROM/TO™"
   :url "https://stash.eyeota.com/projects/UNI/repos/eyeota.kani"
   :license {:name "GNU Lesser General Public License v3.0"

@@ -1,5 +1,7 @@
 # Change Log
 
+## Unreleased
+
 ## 0.0.1 - 2016-08-05
 ### Added
 - Export and Import Cassandra schemas and tables
