@@ -1,4 +1,5 @@
 # kani
+[![Build Status](https://travis-ci.org/eyeota/kani.svg?branch=master)](https://travis-ci.org/eyeota/kani)
 
 Cassandra CSV export/import. Better than cqlsh `COPY FROM/TO`. Requires Java 8
 
