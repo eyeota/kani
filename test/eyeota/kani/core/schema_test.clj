@@ -25,9 +25,8 @@
 
 (deftest import-export-schema
   (with-open [session (.connect *cluster*)]
-    (let [keyspace "kani_test"
-          exported-cql (schema/export-keyspace *cluster* keyspace)
-          _ (do (schema/drop-keyspace session keyspace)
+    (let [exported-cql (schema/export-keyspace *cluster* keyspace-name)
+          _ (do (schema/drop-keyspace session keyspace-name)
                 (schema/import-keyspace session exported-cql))
-          re-exported-cql (schema/export-keyspace *cluster* keyspace)]
+          re-exported-cql (schema/export-keyspace *cluster* keyspace-name)]
       (is (= exported-cql re-exported-cql)))))

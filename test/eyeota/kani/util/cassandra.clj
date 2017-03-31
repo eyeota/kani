@@ -22,6 +22,7 @@
            (com.datastax.driver.core Cluster Session)))
 
 (def ^:dynamic ^Cluster *cluster*)
+(def keyspace-name "kani_test")
 
 (defn embedded-cassandra [f]
   (EmbeddedCassandraServerHelper/startEmbeddedCassandra "cassandra.yml" 40000)
@@ -34,11 +35,11 @@
 
 (defn setup-cassandra [f]
   (with-open [session ^Session (.connect *cluster*)]
-    (let [test-data-cql (-> (io/resource "kani_test_data.cql")
+    (let [test-data-cql (-> (io/resource (str keyspace-name "_data.cql"))
                             (slurp)
                             (clojure.string/split cql-command-separator))]
-      (schema/import-keyspace session (slurp (io/resource "kani_test.cql")))
+      (schema/import-keyspace session (slurp (io/resource (str keyspace-name ".cql"))))
       (doseq [cql-statement test-data-cql]
         (.execute session ^String cql-statement))
       (f)
-      (.execute session "DROP KEYSPACE kani_test"))))
+      (.execute session (str "DROP KEYSPACE " keyspace-name)))))

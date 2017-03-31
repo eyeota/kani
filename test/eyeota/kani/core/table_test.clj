@@ -56,10 +56,9 @@
       {:exported (str exported-string-writer) :re-exported (str re-exported-string-writer)})))
 
 (deftest test-import-export-table
-  (let [keyspace "kani_test"
-        bands-table-result (import-export-table keyspace "bands")
-        tracks-by-album-table-result (import-export-table keyspace "tracks_by_album")
-        playlists-table-result (import-export-table keyspace "playlists")]
+  (let [bands-table-result (import-export-table keyspace-name "bands")
+        tracks-by-album-table-result (import-export-table keyspace-name "tracks_by_album")
+        playlists-table-result (import-export-table keyspace-name "playlists")]
     (is (= (:exported bands-table-result) (:re-exported bands-table-result)))
     (is (= (:exported tracks-by-album-table-result) (:re-exported tracks-by-album-table-result)))
     (is (= (:exported playlists-table-result) (:re-exported playlists-table-result)))))

@@ -60,7 +60,8 @@
       (.getTable table-name)))
 
 (defn table-names
-  [^Cluster cluster keyspace-name]
+  [^Cluster cluster keyspace-name excluded-table-names]
   (->> (keyspace-metadata cluster keyspace-name)
        (.getTables)
-       (mapv #(.getName ^TableMetadata %))))
+       (mapv #(.getName ^TableMetadata %))
+       (remove #(contains? (set excluded-table-names) %))))

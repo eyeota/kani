@@ -88,16 +88,17 @@ Using the shell script uses less memory but takes a little bit longer to complet
 
 ### EDN Config files
 ```
-{:port              9042                ; Cassandra native port to connect to (default: 9042)
- :hosts             ["127.0.0.1"]       ; Cassandra hosts (can specify multiple hosts)
- :keyspace          "db_keyspace"       ; Keyspace to work on
- :fetch-size        2000                ; Cassandra fetch size (if not specified, default to 5000)
- :null-value        "<null>"            ; What value should be stored in CSV for null values (default: "<null>")
- :table-fetch-size  {"huge-table" 20}}  ; Table-specific fetch size (if the row is huge, might want to reduce the
-                                        ; number to avoid timeouts)
- :consistency       :quorum             ; Cassandra read/write consistency level (default: quorum). Accepted values are:
-                                        ; [:all :any :each-quorum :local-one :local-quorum :local-serial :one :quorum
-                                        ;  :serial :three: two]
+{:port              9042                      ; Cassandra native port to connect to (default: 9042)
+ :hosts             ["127.0.0.1"]             ; Cassandra hosts (can specify multiple hosts)
+ :keyspace          "db_keyspace"             ; Keyspace to work on
+ :fetch-size        2000                      ; Cassandra fetch size (if not specified, default to 5000)
+ :null-value        "<null>"                  ; What value should be stored in CSV for null values (default: "<null>")
+ :table-fetch-size  {"huge_table" 20}         ; Table-specific fetch size (if the row is huge, might want to reduce the
+                                              ; number to avoid timeouts)
+ :consistency       :quorum                   ; Cassandra read/write consistency level (default: quorum). Accepted values are:
+                                              ; [:all :any :each-quorum :local-one :local-quorum :local-serial :one :quorum
+                                              ;  :serial :three: two]
+ :excluded-tables   ["do_not_backup_table"]}  ; table names that are not to be imported / exported
 ```
 
 ### Using leiningen
@@ -130,11 +131,11 @@ lein with-profile +6gheap run -m eyeota.kani.application.compare-csv directory-1
 ## Build
 
 ### Test
-`lein check` - runs both code quality and tests
+`lein with-profile +test check` - runs both code quality and tests
 
 `lein quality` - runs only code quality checks
 
-`lein test` - runs test
+`lein with-profile +test test` - runs test
 
 ### Build
 `lein build` - runs test and copies libraries into `target`
