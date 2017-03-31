@@ -1,5 +1,7 @@
 # Change Log
 
+## Unreleased
+
 ## 0.0.2 - 2017-03-31
 ### Added
 - option to exclude particular tables via `exclude-tables` config setting 
