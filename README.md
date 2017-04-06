@@ -98,7 +98,7 @@ Using the shell script uses less memory but takes a little bit longer to complet
  :consistency       :quorum                   ; Cassandra read/write consistency level (default: quorum). Accepted values are:
                                               ; [:all :any :each-quorum :local-one :local-quorum :local-serial :one :quorum
                                               ;  :serial :three: two]
- :excluded-tables   ["do_not_backup_table"]}  ; Table names that are not to be imported / exported
+ :excluded-tables   ["do_not_backup_table"]}  ; Table whose contents are not to be imported / exported (although the schema will)
 ```
 
 ### Using leiningen
